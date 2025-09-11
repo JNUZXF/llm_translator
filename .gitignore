@@ -1,0 +1,454 @@
+# =============================================================================
+# AI翻译应用 .gitignore 配置
+# =============================================================================
+
+# 环境变量文件（包含API密钥等敏感信息）
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+backend/.env
+backend/.env.*
+
+# =============================================================================
+# Python相关
+# =============================================================================
+
+# 字节码文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C扩展
+*.so
+
+# 分发/打包
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# 单元测试/覆盖率报告
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# 翻译
+*.mo
+*.pot
+
+# Django相关
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask相关
+instance/
+.webassets-cache
+
+# Scrapy相关
+.scrapy
+
+# Sphinx文档
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery相关
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath解析文件
+*.sage.py
+
+# 虚拟环境
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+backend/venv/
+backend/env/
+
+# Spyder项目设置
+.spyderproject
+.spyproject
+
+# Rope项目设置
+.ropeproject
+
+# mkdocs文档
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre类型检查器
+.pyre/
+
+# =============================================================================
+# Node.js相关
+# =============================================================================
+
+# 依赖目录
+node_modules/
+frontend/node_modules/
+
+# 运行时数据
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# 目录用于仪表化库生成的覆盖率报告
+lib-cov
+
+# nyc测试覆盖率
+.nyc_output
+
+# Grunt中间存储
+.grunt
+
+# Bower依赖目录
+bower_components
+
+# node-waf配置
+.lock-wscript
+
+# 编译的二进制插件
+build/Release
+
+# 依赖目录
+node_modules/
+jspm_packages/
+
+# TypeScript v1声明文件
+typings/
+
+# TypeScript缓存
+*.tsbuildinfo
+
+# 可选的npm缓存目录
+.npm
+
+# 可选的eslint缓存
+.eslintcache
+
+# Microbundle缓存
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# 可选的REPL历史
+.node_repl_history
+
+# yarn的输出
+*.tgz
+
+# Yarn完整性文件
+.yarn-integrity
+
+# dotenv环境变量文件
+.env
+.env.test
+
+# parcel-bundler缓存
+.cache
+.parcel-cache
+
+# Next.js构建输出
+.next
+
+# Nuxt.js构建/生成输出
+.nuxt
+dist
+
+# Gatsby文件
+.cache/
+public
+
+# Storybook构建输出
+.out
+.storybook-out
+
+# Rollup.js默认构建输出
+dist/
+
+# Temporary folders
+tmp/
+temp/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# =============================================================================
+# React/前端构建相关
+# =============================================================================
+
+# 构建输出
+frontend/build/
+frontend/dist/
+
+# 生产构建
+build/
+dist/
+
+# =============================================================================
+# IDE和编辑器
+# =============================================================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =============================================================================
+# 操作系统生成的文件
+# =============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================================================
+# 日志文件
+# =============================================================================
+
+*.log
+logs/
+backend/*.log
+backend/logs/
+frontend/*.log
+frontend/logs/
+
+# =============================================================================
+# 数据库文件
+# =============================================================================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# =============================================================================
+# 上传文件和临时文件
+# =============================================================================
+
+# 用户上传的文件（但保留目录结构）
+backend/uploads/*.pdf
+backend/uploads/*.docx
+backend/uploads/*.txt
+backend/uploads/*.md
+!backend/uploads/.gitkeep
+
+# 临时文件
+backend/files/*.pdf
+backend/files/*.txt
+backend/files/*.md
+backend/files/images/*.jpg
+backend/files/images/*.png
+!backend/files/.gitkeep
+!backend/files/images/.gitkeep
+
+# 处理报告
+backend/processing_report.md
+backend/resp.md
+backend/image_processing.log
+
+# 临时分段文件
+backend/files/*_temp_segment_*.txt
+
+# =============================================================================
+# 测试和缓存
+# =============================================================================
+
+# 测试文件
+test-results/
+test-output/
+
+# 缓存目录
+.cache/
+.tmp/
+
+# =============================================================================
+# Docker相关（可选）
+# =============================================================================
+
+# 如果你不想提交某些Docker文件，可以取消下面的注释
+# Dockerfile*
+# docker-compose*.yml
+# .dockerignore
+
+# =============================================================================
+# 备份文件
+# =============================================================================
+
+*.bak
+*.backup
+*.old
+*.orig
+
+# =============================================================================
+# 压缩文件
+# =============================================================================
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# =============================================================================
+# 其他项目特定的忽略项
+# =============================================================================
+
+# 如果有其他特定的文件需要忽略，可以在这里添加
+# ipynb
+*.ipynb
+test_*.py
+debug_*.py
+uploads/
+docs/
+backend/files/
+
+# bat
+*.bat
