@@ -6,7 +6,6 @@ import threading
 from queue import Queue, Empty
 import json
 import logging
-from textwrap import dedent
 from typing import Generator
 from flask import send_from_directory
 
@@ -29,31 +28,6 @@ from utils.agent_tool_pdf_translation import AsyncPDFTranslator
 
 main_bp = Blueprint('main', __name__)
 logger = logging.getLogger(__name__)
-
-TRANSLATION_PROMPT_TEMPLATE = dedent(
-    """
-    # 你的角色
-    具有数十年经验的高级翻译专家
-
-    # 你的任务
-    将我下面这段学术论文翻译为地道的中文，符合专业场景
-
-    # 论文内容
-    {paragraph}
-
-    # 要求
-    - 你的输出必须仅包含翻译后的段落，不要包含任何其他内容
-    - 在遇到公式、分点等内容的时候，你都需要用markdown样式，示例：$$f(x) = x^2$$；
-    - 即使原文展示的公式、表格没有用markdown，你也需要转换为markdown样式；
-    - 如果原文包含markdown格式的图片，你需要完整保留所有的内容，示例：![fig_1543](https://...);这里的所有内容你都不能修改
-    - 在遇到明显是标题的地方，你必须在标题前方增加一个换行符\n
-    示例："This is a paragraph.## title" 这个文本你需要翻译为“这里是一个段落。\n## 标题”
-    - 如果是参考文献段落，你不需要翻译为中文，直接展示原文即可
-
-    现在，请输出翻译：
-"""
-).strip()
-
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -227,6 +201,31 @@ def translate_pdf():
         session_id = session_manager.create_session()
         logger.info(f"[translate-pdf] session={session_id} file={filepath}")
 
+        # 与 AsyncPDFTranslator 对齐的提示模板（占位符为 {paragraph}）
+        PDF_TRANSLATION_PROMPT_TEMPLATE = (
+"""
+# 你的角色
+具有数十年经验的高级翻译专家
+
+# 你的任务
+将我下面这段学术论文翻译为地道的中文，符合专业场景
+
+# 论文内容
+{paragraph}
+
+# 要求
+- 你的输出必须仅包含翻译后的段落，不要包含任何其他内容
+- 在遇到公式、分点等内容的时候，你都需要用markdown样式，示例：$$f(x) = x^2$$；
+- 即使原文展示的公式、表格没有用markdown，你也需要转换为markdown样式；
+- 如果原文包含markdown格式的图片，你需要完整保留所有的内容，示例：![fig_1543](https://...);这里的所有内容你都不能修改
+- 在遇到明显是标题的地方，你必须在标题前方增加一个换行符\n
+示例："This is a paragraph.## title" 这个文本你需要翻译为“这里是一个段落。\n## 标题”
+- 如果是参考文献段落，你不需要翻译为中文，直接展示原文即可
+
+现在，请输出翻译：
+"""
+        ).strip()
+
         # 初始化异步翻译器
         translator = AsyncPDFTranslator(model_name=DEFAULT_MODEL, max_workers=8)
 
@@ -240,7 +239,7 @@ def translate_pdf():
                 try:
                     # 聚合最终翻译内容
                     aggregated_contents = []
-                    async for index, translation, total in translator.get_translation_ordered_stream(TRANSLATION_PROMPT_TEMPLATE, filepath):
+                    async for index, translation, total in translator.get_translation_ordered_stream(PDF_TRANSLATION_PROMPT_TEMPLATE, filepath):
                         # 检查是否取消
                         if session_manager.is_session_cancelled(session_id):
                             q.put(json.dumps({"cancelled": True, "message": "翻译已被用户中断"}))
