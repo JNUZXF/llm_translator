@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # 后端服务
   backend:
@@ -23,7 +21,7 @@ services:
     networks:
       - ai-translator-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      test: ["CMD-SHELL", "curl -fsS http://localhost:5000/api/health || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -43,7 +41,7 @@ services:
     networks:
       - ai-translator-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      test: ["CMD-SHELL", "curl -fsS http://localhost/health || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
