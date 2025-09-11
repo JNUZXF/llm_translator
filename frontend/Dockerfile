@@ -18,10 +18,6 @@ COPY public ./public
 COPY src ./src
 COPY tsconfig.json ./
 
-# 如果存在其他配置文件（不会中断构建）
-COPY .env* ./ 2>/dev/null || true
-COPY *.config.* ./ 2>/dev/null || true
-
 # 构建应用
 RUN npm run build
 
