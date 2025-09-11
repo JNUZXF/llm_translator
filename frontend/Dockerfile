@@ -7,14 +7,20 @@ FROM node:18-alpine AS builder
 # 设置工作目录
 WORKDIR /app
 
-# 复制package文件
-COPY package*.json ./
+# 仅复制包管理文件以充分利用缓存
+COPY package.json package-lock.json ./
 
-# 安装依赖
-RUN npm ci --only=production
+# 安装全部依赖（构建阶段需要构建工具和脚本）
+RUN npm ci
 
-# 复制源代码
-COPY . .
+# 复制必要的项目文件
+COPY public ./public
+COPY src ./src
+COPY tsconfig.json ./
+
+# 如果存在其他配置文件（不会中断构建）
+COPY .env* ./ 2>/dev/null || true
+COPY *.config.* ./ 2>/dev/null || true
 
 # 构建应用
 RUN npm run build
