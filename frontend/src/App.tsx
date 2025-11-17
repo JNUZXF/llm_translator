@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { GlobalStyle, AppContainer, Sidebar, Logo, NavButton, MainContent } from './styles/GlobalStyles';
+import { AppContainer, Sidebar, Logo, NavButton, MainContent } from './styles/GlobalStyles';
+import ThemedGlobalStyles from './styles/ThemedGlobalStyles';
+import { ThemeProvider } from './theme';
+import { ThemeToggle } from './components/ThemeToggle';
 import ParticleBackground from './components/ParticleBackground';
 import FloatingFlowers from './components/FloatingFlowers';
 import HomePage from './pages/HomePage';
@@ -66,8 +69,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <>
-      <GlobalStyle />
+    <ThemeProvider>
+      <ThemedGlobalStyles />
       <ParticleBackground />
       <FloatingFlowers />
       <AppContainer>
@@ -95,10 +98,20 @@ const App: React.FC = () => {
           </div>
           
           <div style={{ position: 'relative', width: '100%' }} data-settings-menu>
+            {/* 主题切换器 */}
+            <div style={{
+              padding: '0.75rem 1rem',
+              borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <ThemeToggle />
+            </div>
+
             <NavButton
               $active={false}
               onClick={() => setShowSettings(!showSettings)}
-              style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}
             >
               ⚙️ 设置
             </NavButton>
@@ -168,7 +181,7 @@ const App: React.FC = () => {
           {renderCurrentPage()}
         </MainContent>
       </AppContainer>
-    </>
+    </ThemeProvider>
   );
 };
 

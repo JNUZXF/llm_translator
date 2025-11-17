@@ -1,18 +1,43 @@
-python-docx==1.1.2
+# 核心框架
 flask==3.0.0
 flask-cors==4.0.0
+werkzeug==3.0.1
+
+# 环境配置
 python-dotenv==1.0.0
+
+# LLM API客户端
 openai==1.102.0
 groq==0.9.0
 zhipuai>=2.1.5
 google-generativeai==0.7.2
 dashscope==1.24.2
+volcengine-python-sdk[ark]==4.0.14
+volcengine==1.0.166
+
+# PDF处理
 PyPDF2==3.0.1
 pymupdf==1.23.26
-werkzeug==3.0.1
-pyaudio==0.2.14
-volcengine-python-sdk[ark]==4.0.14
+
+# 文档处理
+python-docx==1.1.2
 nbformat==5.10.4
+
+# 数据处理
 pandas==2.2.3
 scipy==1.15.0
-volcengine==1.0.166
+
+# 音频处理
+pyaudio==0.2.14
+
+# 新增：安全和验证
+bleach==6.1.0          # HTML清理和XSS防护
+python-magic==0.4.27   # 文件类型检测（魔数检查）
+
+# 新增：速率限制（可选，需要Redis）
+# Flask-Limiter==3.5.0
+# redis==5.0.1
+
+# 新增：监控和日志（可选）
+# prometheus-flask-exporter==0.23.0
+# psutil==5.9.6
